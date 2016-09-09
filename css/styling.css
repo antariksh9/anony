@@ -78,6 +78,7 @@ h6 {
 }
 #cross{
     padding: 5%;
+    cursor : pointer;
 }
 #form-title{
     border : 1px solid gray;
@@ -90,6 +91,26 @@ h6 {
     flex-direction: row;
     align-items:center;
     justify-content: space-between;
+}
+.button {
+    background-color: #4CAF50;
+    border-radius: 16px;
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 2px 2px;
+    cursor: pointer;
+}
+#form-foot{
+    display:flex;
+    padding : 2% 3% ;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
 }
 #form-desc{
     border : 1px solid gray;

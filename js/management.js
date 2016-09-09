@@ -64,21 +64,38 @@ var management=(function(){
 		$("#overlay-initial").fadeIn(500);
 		//newProject.appendTo(document.body);
 	}
+	function clearDOM(){
+		$("#task-container").empty();
+	}
 	function loadJSON(){
+		clearDOM();
 		var task=JSON.parse(tasks);
 		addTasks(task);
 	}
 	function fadeout(){
+		$("#form-project").find("input[type=text], textarea,select").val("");
 		$("#overlay-initial").fadeOut(500);
+	}
+	function addProject(){
+		var title=document.getElementById("title").value;
+
+		var desc=document.getElementById("desc").value;
+		var mem=document.getElementById("members-number").value;
+		tasks=tasks.substr(0,tasks.length-1)+',{"name":"'+title+'","desc":"'+desc+'","members":"'+mem+'"}]';
+		init();
+		fadeout();
+
 	}
 	function init(){
 		loadJSON();
-		var overlayElement=document.getElementById("addOverlay");
-		overlayElement.addEventListener("click",createNewProject);
+		document.getElementById("addOverlay").addEventListener("click",createNewProject);
 		document.getElementById("cross").addEventListener("click",fadeout);
+		document.getElementById("cancel-project").addEventListener("click",fadeout);
+		document.getElementById("create-new-project").addEventListener("click",addProject);
 	}
 	return{
-		init:init
+		init:init,
+		t:tasks
 	};
 
 })();
