@@ -21,8 +21,10 @@ h6 {
     margin :2px;
     padding :2px;
 }
+#addOverlay:hover {
+}
 #box-container{
-    width :80%;
+    width :81%;
     margin:auto;
     padding:10px 25px;
     display:flex;
@@ -85,6 +87,14 @@ h6 {
     width:100%;
     height : 15%;
     box-sizing: border-box;
+}
+.flexBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+    color : gray;
 }
 #form-head{
     display: flex;

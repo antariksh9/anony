@@ -44,17 +44,23 @@ var management=(function(){
 		addChild.className="col s4 m4 l4";
 		addChild.id="addOverlay";
 		var addChild1=document.createElement("div");
-		addChild1.className="card white";
+		addChild1.className="card white hoverable";
+		// addChild1.style.margin="auto";
 		addChild1.style.height=document.getElementsByClassName("card white")[task.length-1].offsetHeight;
 		var addChild2=document.createElement("div");
-		addChild2.className="card-content gray-text";
-		addChild2.className="valign-wrapper center-align";
+		// addChild2.className="card-content gray-text";
+		// addChild2.className="valign-wrapper center-align";
+		addChild2.className="flexBox";
+		//addChild2.style.boxShadow="0 0 5px gray"
 		var text=document.createElement("h6");
-		text.className="center-align";
 		text.innerHTML="Create New Project";
-		addChild.appendChild(addChild1);
-		addChild1.appendChild(addChild2);
+		var sign=document.createElement("i");
+		sign.className="small material-icons";
+		sign.innerHTML="note_add";
+		addChild2.appendChild(sign);
 		addChild2.appendChild(text);
+		addChild1.appendChild(addChild2);
+		addChild.appendChild(addChild1);
 		parent.appendChild(addChild);
 
 	}
