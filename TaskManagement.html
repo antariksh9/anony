@@ -1,9 +1,8 @@
 <html>
 <head>
-    <link href="css/styling.css" rel="stylesheet">
     <link href="materialize/css/materialize.min.css" rel="stylesheet">
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-   
+    <link href="css/styling.css" rel="stylesheet">
 </head>
 <body class="white">
     <header class="teal darken-1" id="header-page">
@@ -24,8 +23,36 @@
           </div>
         </div> -->
         
-      </div>
-                
+        </div>
+        <div id="overlay-initial" class="hoverable">
+            <div id="form-head">
+                <h6 id="add-project-head">Create Project</h6>
+                <div id="cross">X</div>
+            </div>
+            <div class="pad-vertical">
+            </div>
+            <form action="#" id="form-project" method="post" name="form">
+                <h7>Title</h7>
+                <div id="form-title">
+                    <input id="title" name="title" placeholder="Task Title" type="text">
+                </div>
+                <br>
+                <h7>Description</h7>
+                <div id="form-desc">
+                    <textarea id="desc" name="desc" placeholder="Start Typing...." type="text"></textarea>
+                </div>
+                <br>
+                <h7>Members</h7>
+                <div id="form-dropdown">
+                    <select id="members-number" name="members">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                    </select>
+                </div>
+            </form>
+        </div>   
     </main>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="materialize/js/materialize.min.js" type="text/javascript"></script>
@@ -33,7 +60,7 @@
     <script src="js/management.js" type="text/javascript"></script>
     <script>
         function onBodyLoad() {
-        management.hello();
+        management.init();
     }
     window.addEventListener("load",onBodyLoad);
     </script>
