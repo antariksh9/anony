@@ -1,0 +1,46 @@
+body {
+        width : 100%;
+        margin:auto;
+        height :100vh;
+    }
+    #headname {
+        padding : 10px 20px;
+    }
+    #header-page {
+        margin : 2px ;
+        display:flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    h4 {
+        font-family: "Arial",sans-serif;
+        font-size: 15px;
+        color: white;
+        font-style: normal;
+    }
+    h6 {
+        font-size: 18px;
+        margin :2px;
+        padding :2px;
+    }
+    #box-container{
+        padding:10px 25px;
+        display:flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .card{
+        height : 140px;
+        display: flex;
+
+    }
+    .col{
+        border:20px;
+    }
+    #card-text{
+        color: gray;
+    }
+    .member-info{
+        padding : 5px;
+    }

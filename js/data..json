@@ -1,0 +1,6 @@
+tasks = '[{"name" : "Publishing", "desc" : "It is a module which helps use to post in multiple channel at once" , "members":"12"},
+{"name" : "Paid", "desc" : "It is a module which helps use to post in multiple channel at once" , "members":"12"},
+{"name" : "Core", "desc" : "It is a module which helps use to post in multiple channel at once" , "members":"12"},
+{"name" : "Engagement", "desc" : "It is a module which helps use to post in multiple channel at once" , "members":"12"},
+{"name" : "Distributed", "desc" : "It is a module which helps use to post in multiple channel at once" , "members":"12"},
+{"name" : "Social Selling", "desc" : "It is a module which helps use to post in multiple channel at once" , "members":"12"}]';
