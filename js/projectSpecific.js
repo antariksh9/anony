@@ -21,8 +21,26 @@ var projectSpecific= (function(){
 		var newTask= new taskClass(name,desc,status);
 		this.tasks.push(newTask);
 	}
+	memberClass.prototype.addTaskObject=function(task){
+		this.tasks.push(task);
+	}
+	memberClass.prototype.removeTask = function(task){
+		for(var i=0;i<this.tasks.length;i++){
+			if(this.tasks[i].name===task.name){
+
+				this.tasks.splice(i,1);
+			}
+		}
+	}
 	memberClass.prototype.giveTask = function(){
 		return this.tasks;
+	}
+	memberClass.prototype.giveSpecificTask=function(name){
+		for(var i=0;i<this.tasks.length;i++){
+			if(this.tasks[i].name===name){
+				return this.tasks[i];
+			}
+		}
 	}
 	memberClass.prototype.alterTaskStatus = function(name,status){
 		for(var i=0;i<this.tasks.length;i++){
@@ -36,6 +54,10 @@ var projectSpecific= (function(){
 		this.name=name;
 		this.desc=desc;
 		this.status=status;
+	}
+	taskClass.prototype.changeParentMember=function(member1,member2){
+		member1.removeTask(this);
+		member2.addTaskObject(this);
 	}
 	function giveMemberElement(name){
 		for(var i=0;i<members.length;i++){
@@ -151,13 +173,47 @@ var projectSpecific= (function(){
 		currentCreatedMember=this.id;
 		$("#overlay-initial-task").fadeIn(500);
 	}
+	function dragOfTaskStart(e){
+		var parentDiv=this.parentNode.id;
+		console.log("start");
+		//var parentMember = giveMemberElement(parentDiv);
+		var taskId=$(this).find("p")[0].innerHTML;
+		var text=parentDiv+'^'+taskId;
+		e.dataTransfer.setData("Text",text);
+	}
+	function dropOfTask(e){
+		e.preventDefault();
+		var text=e.dataTransfer.getData("Text");
+		console.log(text);
+		var taskName=text.split('^')[1];
+		var parentId=text.split('^')[0];
+		var parentMember=giveMemberElement(parentId);
+		var targetMember=giveMemberElement(this.id);
+		var moveTask=parentMember.giveSpecificTask(taskName);
+		var taskObject=new taskClass(moveTask.name,moveTask.desc,moveTask.status);
+		taskObject.changeParentMember(parentMember,targetMember);
+		updateMemberListSession();
+		clearDOM();
+		loadDOM();
+
+
+	}
 	function addTaskToDOM(tasks,memberId){
 		var divForTask=document.getElementById(memberId);
 		for(var i=0;i<tasks.length;i++){
 			var taskForDOM=new taskClass(tasks[i].name,tasks[i].desc,tasks[i].status);
 			var taskE=taskForDOM.giveTaskElement();
+			taskE.draggable="true";
 			divForTask.appendChild(taskE);
+			taskE.addEventListener("dragstart",dragOfTaskStart);
+			taskE.addEventListener("dragover",function(e){e.preventDefault();});
+			// console.log(taskE.innerHTML);
+			// console.log($(taskE).find("p")[0].innerHTML);
+			// console.log($(taskE).find("p")[1].innerHTML);
+			// console.log($(taskE).find("button")[0].innerHTML);
 		}
+		divForTask.addEventListener("dragover",function(e){e.preventDefault();});
+		divForTask.addEventListener("drop",dropOfTask);
 		var addTaskDiv= document.createElement("div");
 		addTaskDiv.className="addtask-box";
 		addTaskDiv.id=memberId;
