@@ -7,7 +7,12 @@ var management=(function(){
 	else{
 		var executeOnce=sessionStorage.getItem("executeOnce");
 	}
-	var projects=[];
+	if(sessionStorage.getItem("projects")===null){
+		var projects=[];
+	}
+	else{
+		projects=JSON.parse(sessionStorage.getItem("projects"));
+	}
 	if(sessionStorage.getItem('tasks')==null){
 		var tasks = '[{"name" : "Publishing", "desc" : "It is a module which helps use to post in multiple channel at once" , "members":"12"},'+
 		'{"name" : "Paid", "desc" : "It is a module which helps use to post in multiple channel at once" , "members":"12"},'+
@@ -103,12 +108,13 @@ var management=(function(){
 	}
 	function addProject(){
 		var title=document.getElementById("title").value;
-
 		var desc=document.getElementById("desc").value;
 		var mem=document.getElementById("members-number").value;
 		tasks=tasks.substr(0,tasks.length-1)+',{"name":"'+title+'","desc":"'+desc+'","members":"'+mem+'"}]';
 		var task2=JSON.parse(tasks);
+		console.log(projects);
 		projects.push(new projectType(task2[task2.length-1].name));
+		console.log(projects);
 		sessionStorage.setItem("projects",JSON.stringify(projects));
 		sessionStorage.setItem('tasks',tasks);
 		init();
@@ -119,11 +125,20 @@ var management=(function(){
 		for(var i=0;i<task1.length;i++){
 			projects.push(new projectType(task1[i].name));
 		}
+		var initialMember=new memberType("Abhinav Singi",[]);
+		for(var i=0;i<projects.length;i++){
+
+			projects[i].members.push(initialMember);
+		}
 		sessionStorage.setItem("projects",JSON.stringify(projects));
 	}
 	var projectType= function(name){
 		this.name = name;
 		this.members=[];
+	}
+	var memberType= function(name,task){
+		this.name=name;
+		this.tasks=task;
 	}
 	function init(){
 		loadJSON();
